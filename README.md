@@ -1,249 +1,249 @@
 # select_audio_output
 
-Ein Kommandozeilen-Tool für macOS, mit dem Sie schnell und einfach zwischen verschiedenen Audio-Ausgabegeräten wechseln können.
+A command-line tool for macOS that allows you to quickly and easily switch between different audio output devices.
 
-## Funktionen
+## Features
 
-- Auflisten aller verfügbaren Audio-Ausgabegeräte
-- Anzeigen des aktuell aktiven Audio-Ausgabegeräts
-- Wechseln zu einem bestimmten Audio-Ausgabegerät per Name
-- Stummschaltung umschalten (mute/unmute)
-- Lautstärkeregelung direkt über die Kommandozeile
-- Interaktiver Modus zur Auswahl von Geräten mit Pfeiltasten
-- Intelligentes Fuzzy-Matching für Gerätenamen (erkennt und korrigiert Tippfehler automatisch)
+- List all available audio output devices
+- Display the currently active audio output device
+- Switch to a specific audio output device by name
+- Toggle mute/unmute
+- Control volume directly from the command line
+- Interactive mode for selecting devices with arrow keys
+- Intelligent fuzzy matching for device names (automatically detects and corrects typos)
 
-## Voraussetzungen
+## Requirements
 
 - macOS
-- Python 3.6 oder höher
-- [SwitchAudioSource](https://github.com/deweller/switchaudio-osx) (installierbar über Homebrew)
+- Python 3.6 or higher
+- [SwitchAudioSource](https://github.com/deweller/switchaudio-osx) (installable via Homebrew)
 
 ## Installation
 
-1. Stellen Sie sicher, dass Python 3 installiert ist:
+1. Make sure Python 3 is installed:
    ```
    python3 --version
    ```
 
-2. Installieren Sie SwitchAudioSource über Homebrew:
+2. Install SwitchAudioSource via Homebrew:
    ```
    brew install switchaudio-osx
    ```
 
-3. Klonen Sie dieses Repository oder laden Sie die Dateien herunter.
+3. Clone this repository or download the files.
 
-4. Installieren Sie die erforderlichen Python-Abhängigkeiten:
+4. Install the required Python dependencies:
    ```
    pip3 install -r requirements.txt
    ```
 
-5. Machen Sie das Skript ausführbar:
+5. Make the script executable:
    ```
    chmod +x select_audio_output.py
    ```
 
-## Verwendung
+## Usage
 
-### Auflisten aller verfügbaren Audio-Ausgabegeräte
+### List all available audio output devices
 
 ```
 ./select_audio_output.py
 ```
 
-Ausgabe:
+Output:
 ```
 Available output devices:
-  • MacBook Pro-Lautsprecher (aktiv)
+  • MacBook Pro Speakers (active)
   • AirPods Pro
-  • Externe Lautsprecher
-  • HDMI-Ausgang
+  • External Speakers
+  • HDMI Output
 ```
 
-### Anzeigen des aktuell aktiven Audio-Ausgabegeräts
+### Display the currently active audio output device
 
 ```
 ./select_audio_output.py -c
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --current
 ```
 
-Ausgabe:
+Output:
 ```
-MacBook Pro-Lautsprecher
-```
-
-### Wechseln zu einem bestimmten Audio-Ausgabegerät
-
-```
-./select_audio_output.py "Gerätename"
+MacBook Pro Speakers
 ```
 
-Beispiele:
+### Switch to a specific audio output device
+
 ```
-# Exakter Name
-./select_audio_output.py "MacBook Pro-Lautsprecher"
+./select_audio_output.py "Device name"
+```
 
-# Mit Fuzzy-Matching (Teilname)
-./select_audio_output.py "Lautsprecher"
+Examples:
+```
+# Exact name
+./select_audio_output.py "MacBook Pro Speakers"
 
-# Mit Fuzzy-Matching (Tippfehler)
-./select_audio_output.py "MacBok Lautsprecer"
+# With fuzzy matching (partial name)
+./select_audio_output.py "Speakers"
 
-# Mit Fuzzy-Matching (Groß-/Kleinschreibung)
+# With fuzzy matching (typos)
+./select_audio_output.py "MacBok Spekers"
+
+# With fuzzy matching (case insensitive)
 ./select_audio_output.py "airpods"
 
-# Mit Fuzzy-Matching (Abkürzungen)
-./select_audio_output.py "AP Pro"  # Findet "AirPods Pro"
+# With fuzzy matching (abbreviations)
+./select_audio_output.py "AP Pro"  # Finds "AirPods Pro"
 
-# Mit Fuzzy-Matching (Teilwörter)
-./select_audio_output.py "extern"  # Findet "Externe Lautsprecher"
+# With fuzzy matching (partial words)
+./select_audio_output.py "extern"  # Finds "External Speakers"
 
-# Mit Fuzzy-Matching (Zahlen und Sonderzeichen)
-./select_audio_output.py "hdmi2"   # Findet "HDMI-Ausgang 2"
+# With fuzzy matching (numbers and special characters)
+./select_audio_output.py "hdmi2"   # Finds "HDMI Output 2"
 ```
 
-### Stummschaltung umschalten
+### Toggle mute
 
 ```
 ./select_audio_output.py -m
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --toggle-mute
 ```
 
-Ausgabe:
+Output:
 ```
 Audio muted
 ```
-oder
+or
 ```
 Audio unmuted
 ```
 
-### Lautstärkeregelung
+### Volume control
 
-#### Aktuelle Lautstärke anzeigen
+#### Display current volume
 
 ```
 ./select_audio_output.py -g
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --get-volume
 ```
 
-Ausgabe:
+Output:
 ```
-Aktuelle Lautstärke: 75%
+Current volume: 75%
 ```
 
-#### Lautstärke auf einen bestimmten Wert setzen (0-100)
+#### Set volume to a specific value (0-100)
 
 ```
 ./select_audio_output.py -v 50
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --volume 50
 ```
 
-Ausgabe:
+Output:
 ```
-Lautstärke auf 50% gesetzt
+Volume set to 50%
 ```
 
-#### Lautstärke erhöhen
+#### Increase volume
 
 ```
 ./select_audio_output.py -u 10
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --volume-up 10
 ```
 
-Ausgabe:
+Output:
 ```
-Lautstärke auf 60% gesetzt
+Volume set to 60%
 ```
 
-#### Lautstärke verringern
+#### Decrease volume
 
 ```
 ./select_audio_output.py -d 10
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --volume-down 10
 ```
 
-Ausgabe:
+Output:
 ```
-Lautstärke auf 40% gesetzt
+Volume set to 40%
 ```
 
-### Interaktiver Modus (Auswahl mit Pfeiltasten)
+### Interactive mode (selection with arrow keys)
 
 ```
 ./select_audio_output.py -i
 ```
 
-oder
+or
 
 ```
 ./select_audio_output.py --interactive
 ```
 
-Im interaktiven Modus können Sie mit den Pfeiltasten ↑ und ↓ durch die verfügbaren Geräte navigieren und mit Enter auswählen:
+In interactive mode, you can navigate through the available devices using the arrow keys ↑ and ↓ and select with Enter:
 
 ```
-? Bitte Audio-Ausgabegerät wählen: (Use arrow keys)
- > MacBook Pro-Lautsprecher (aktiv)
+? Please select audio output device: (Use arrow keys)
+ > MacBook Pro Speakers (active)
    AirPods Pro
-   Externe Lautsprecher
-   HDMI-Ausgang
-   -- Stummschalten umschalten --
-   -- Lautstärke anzeigen --
-   -- Lautstärke erhöhen (+10%) --
-   -- Lautstärke verringern (-10%) --
-   -- Lautstärke anpassen... --
+   External Speakers
+   HDMI Output
+   -- Toggle mute --
+   -- Display volume --
+   -- Increase volume (+10%) --
+   -- Decrease volume (-10%) --
+   -- Adjust volume... --
 ```
 
-### Kombinierte Befehle und Workflows
+### Combined commands and workflows
 
-#### Gerät wechseln und Lautstärke anpassen
+#### Switch device and adjust volume
 
-Sie können mehrere Befehle nacheinander ausführen, um komplexe Aktionen durchzuführen:
+You can execute multiple commands in sequence to perform complex actions:
 
 ```bash
-# Zu AirPods wechseln und Lautstärke auf 40% setzen
+# Switch to AirPods and set volume to 40%
 ./select_audio_output.py "AirPods" && ./select_audio_output.py -v 40
 
-# Zu externen Lautsprechern wechseln und Lautstärke erhöhen
-./select_audio_output.py "Externe" && ./select_audio_output.py -u 20
+# Switch to external speakers and increase volume
+./select_audio_output.py "External" && ./select_audio_output.py -u 20
 
-# Zu MacBook-Lautsprechern wechseln und stummschalten
+# Switch to MacBook speakers and mute
 ./select_audio_output.py "MacBook" && ./select_audio_output.py -m
 ```
 
-#### Verwendung in Shell-Skripten
+#### Usage in shell scripts
 
-Beispiel für ein einfaches Shell-Skript, das je nach Tageszeit das Audio-Ausgabegerät wechselt:
+Example of a simple shell script that switches the audio output device based on the time of day:
 
 ```bash
 #!/bin/bash
@@ -251,147 +251,147 @@ Beispiel für ein einfaches Shell-Skript, das je nach Tageszeit das Audio-Ausgab
 HOUR=$(date +%H)
 
 if [ $HOUR -ge 22 ] || [ $HOUR -lt 8 ]; then
-    # Abends/Nachts: Zu Kopfhörern wechseln und Lautstärke reduzieren
+    # Evening/Night: Switch to headphones and reduce volume
     ./select_audio_output.py "AirPods" && ./select_audio_output.py -v 30
-    echo "Nachtmodus: AirPods mit reduzierter Lautstärke"
+    echo "Night mode: AirPods with reduced volume"
 else
-    # Tagsüber: Zu Lautsprechern wechseln mit normaler Lautstärke
-    ./select_audio_output.py "Lautsprecher" && ./select_audio_output.py -v 70
-    echo "Tagmodus: Lautsprecher mit normaler Lautstärke"
+    # Daytime: Switch to speakers with normal volume
+    ./select_audio_output.py "Speakers" && ./select_audio_output.py -v 70
+    echo "Day mode: Speakers with normal volume"
 fi
 ```
 
-#### Verwendung mit Shell-Aliassen
+#### Usage with shell aliases
 
-Fügen Sie diese Zeilen zu Ihrer `.zshrc` oder `.bashrc` hinzu, um praktische Aliasse zu erstellen:
+Add these lines to your `.zshrc` or `.bashrc` to create convenient aliases:
 
 ```bash
-# Schnelle Audio-Geräteumschaltung
-alias speakers="~/pfad/zu/select_audio_output.py 'MacBook Pro-Lautsprecher'"
-alias airpods="~/pfad/zu/select_audio_output.py 'AirPods' && ~/pfad/zu/select_audio_output.py -v 40"
-alias hdmi="~/pfad/zu/select_audio_output.py 'HDMI'"
-alias extspk="~/pfad/zu/select_audio_output.py 'Externe Lautsprecher' && ~/pfad/zu/select_audio_output.py -v 60"
+# Quick audio device switching
+alias speakers="~/path/to/select_audio_output.py 'MacBook Pro Speakers'"
+alias airpods="~/path/to/select_audio_output.py 'AirPods' && ~/path/to/select_audio_output.py -v 40"
+alias hdmi="~/path/to/select_audio_output.py 'HDMI'"
+alias extspk="~/path/to/select_audio_output.py 'External Speakers' && ~/path/to/select_audio_output.py -v 60"
 
-# Lautstärkeregelung
-alias vol="~/pfad/zu/select_audio_output.py -g"
-alias vol50="~/pfad/zu/select_audio_output.py -v 50"
-alias vol+="~/pfad/zu/select_audio_output.py -u 10"
-alias vol-="~/pfad/zu/select_audio_output.py -d 10"
-alias mute="~/pfad/zu/select_audio_output.py -m"
+# Volume control
+alias vol="~/path/to/select_audio_output.py -g"
+alias vol50="~/path/to/select_audio_output.py -v 50"
+alias vol+="~/path/to/select_audio_output.py -u 10"
+alias vol-="~/path/to/select_audio_output.py -d 10"
+alias mute="~/path/to/select_audio_output.py -m"
 
-# Interaktiver Modus
-alias audio="~/pfad/zu/select_audio_output.py -i"
+# Interactive mode
+alias audio="~/path/to/select_audio_output.py -i"
 ```
 
-### Integration mit anderen Tools
+### Integration with other tools
 
-#### Verwendung mit AppleScript
+#### Usage with AppleScript
 
 ```applescript
--- AppleScript zum Umschalten auf AirPods, wenn sie verbunden sind
+-- AppleScript to switch to AirPods when they are connected
 tell application "System Events"
     set airpodsConnected to do shell script "system_profiler SPBluetoothDataType | grep -q 'AirPods.*Connected' && echo 'yes' || echo 'no'"
     
     if airpodsConnected is "yes" then
-        do shell script "~/pfad/zu/select_audio_output.py 'AirPods'"
+        do shell script "~/path/to/select_audio_output.py 'AirPods'"
     else
-        do shell script "~/pfad/zu/select_audio_output.py 'MacBook Pro-Lautsprecher'"
+        do shell script "~/path/to/select_audio_output.py 'MacBook Pro Speakers'"
     end if
 end tell
 ```
 
-#### Verwendung mit Automator
+#### Usage with Automator
 
-Erstellen Sie einen Automator-Schnellbefehl, der das Audio-Ausgabegerät basierend auf dem verbundenen Gerät wechselt:
+Create an Automator shortcut that switches the audio output device based on the connected device:
 
-1. Öffnen Sie Automator und erstellen Sie einen neuen Schnellbefehl
-2. Fügen Sie die Aktion "Shell-Skript ausführen" hinzu
-3. Fügen Sie folgenden Code ein:
+1. Open Automator and create a new shortcut
+2. Add the "Run Shell Script" action
+3. Add the following code:
 
 ```bash
-# Prüfen, ob HDMI verbunden ist
+# Check if HDMI is connected
 if system_profiler SPDisplaysDataType | grep -q "HDMI"; then
-    ~/pfad/zu/select_audio_output.py "HDMI"
-# Prüfen, ob AirPods verbunden sind
+    ~/path/to/select_audio_output.py "HDMI"
+# Check if AirPods are connected
 elif system_profiler SPBluetoothDataType | grep -q "AirPods.*Connected"; then
-    ~/pfad/zu/select_audio_output.py "AirPods"
-# Sonst zu MacBook-Lautsprechern wechseln
+    ~/path/to/select_audio_output.py "AirPods"
+# Otherwise switch to MacBook speakers
 else
-    ~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher"
+    ~/path/to/select_audio_output.py "MacBook Pro Speakers"
 fi
 ```
 
-4. Speichern Sie den Schnellbefehl und führen Sie ihn aus, wenn Sie Ihr Audio-Ausgabegerät automatisch wechseln möchten
+4. Save the shortcut and run it when you want to automatically switch your audio output device
 
-#### Verwendung mit Keyboard Maestro
+#### Usage with Keyboard Maestro
 
-Erstellen Sie einen Keyboard Maestro-Makro, der mit einer Tastenkombination das Audio-Ausgabegerät wechselt:
+Create a Keyboard Maestro macro that switches the audio output device with a keyboard shortcut:
 
-1. Erstellen Sie ein neues Makro in Keyboard Maestro
-2. Fügen Sie einen Auslöser hinzu (z.B. Tastenkombination ⌥⌘A für AirPods)
-3. Fügen Sie die Aktion "Shell-Skript ausführen" hinzu:
+1. Create a new macro in Keyboard Maestro
+2. Add a trigger (e.g., keyboard shortcut ⌥⌘A for AirPods)
+3. Add the "Execute Shell Script" action:
 
 ```bash
-~/pfad/zu/select_audio_output.py "AirPods"
+~/path/to/select_audio_output.py "AirPods"
 ```
 
-4. Erstellen Sie weitere Makros für andere Geräte mit unterschiedlichen Tastenkombinationen
+4. Create additional macros for other devices with different keyboard shortcuts
 
-#### Verwendung mit Alfred oder Raycast
+#### Usage with Alfred or Raycast
 
-Erstellen Sie Workflows oder Skripte für Alfred oder Raycast:
+Create workflows or scripts for Alfred or Raycast:
 
 ```bash
-# Alfred/Raycast-Skript für schnellen Gerätewechsel
+# Alfred/Raycast script for quick device switching
 case "$1" in
   "speakers")
-    ~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher"
+    ~/path/to/select_audio_output.py "MacBook Pro Speakers"
     ;;
   "airpods")
-    ~/pfad/zu/select_audio_output.py "AirPods"
+    ~/path/to/select_audio_output.py "AirPods"
     ;;
   "hdmi")
-    ~/pfad/zu/select_audio_output.py "HDMI"
+    ~/path/to/select_audio_output.py "HDMI"
     ;;
   "external")
-    ~/pfad/zu/select_audio_output.py "Externe Lautsprecher"
+    ~/path/to/select_audio_output.py "External Speakers"
     ;;
   *)
-    ~/pfad/zu/select_audio_output.py -i
+    ~/path/to/select_audio_output.py -i
     ;;
 esac
 ```
 
-### Erweiterte Anwendungsfälle
+### Advanced use cases
 
-#### Automatischer Wechsel bei Verbindung von Bluetooth-Geräten
+#### Automatic switching when Bluetooth devices connect
 
-Erstellen Sie ein LaunchAgent, der auf Bluetooth-Verbindungen reagiert:
+Create a LaunchAgent that responds to Bluetooth connections:
 
-1. Erstellen Sie ein Skript `~/Library/Scripts/audio_switch.sh`:
+1. Create a script `~/Library/Scripts/audio_switch.sh`:
 
 ```bash
 #!/bin/bash
 
-# Prüfen, ob AirPods verbunden sind
+# Check if AirPods are connected
 if system_profiler SPBluetoothDataType | grep -q "AirPods.*Connected"; then
-    ~/pfad/zu/select_audio_output.py "AirPods"
-    # Optional: Lautstärke anpassen
-    ~/pfad/zu/select_audio_output.py -v 40
+    ~/path/to/select_audio_output.py "AirPods"
+    # Optional: Adjust volume
+    ~/path/to/select_audio_output.py -v 40
     exit 0
 fi
 
-# Wenn keine AirPods verbunden sind, zu Standardgerät wechseln
-~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher"
+# If no AirPods are connected, switch to default device
+~/path/to/select_audio_output.py "MacBook Pro Speakers"
 ```
 
-2. Machen Sie das Skript ausführbar:
+2. Make the script executable:
 
 ```bash
 chmod +x ~/Library/Scripts/audio_switch.sh
 ```
 
-3. Erstellen Sie einen LaunchAgent `~/Library/LaunchAgents/com.user.audio_switch.plist`:
+3. Create a LaunchAgent `~/Library/LaunchAgents/com.user.audio_switch.plist`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -414,209 +414,209 @@ chmod +x ~/Library/Scripts/audio_switch.sh
 </plist>
 ```
 
-4. Laden Sie den LaunchAgent:
+4. Load the LaunchAgent:
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.user.audio_switch.plist
 ```
 
-#### Zeitgesteuerter Wechsel für Tag/Nacht-Modus
+#### Time-controlled switching for day/night mode
 
-Erstellen Sie einen Cron-Job, der je nach Tageszeit das Audio-Ausgabegerät und die Lautstärke anpasst:
+Create a cron job that adjusts the audio output device and volume based on the time of day:
 
 ```bash
-# Crontab-Eintrag (crontab -e)
-# Um 8 Uhr morgens zu Lautsprechern mit höherer Lautstärke wechseln
-0 8 * * * ~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher" && ~/pfad/zu/select_audio_output.py -v 70
+# Crontab entry (crontab -e)
+# At 8 AM, switch to speakers with higher volume
+0 8 * * * ~/path/to/select_audio_output.py "MacBook Pro Speakers" && ~/path/to/select_audio_output.py -v 70
 
-# Um 22 Uhr abends zu Kopfhörern mit niedrigerer Lautstärke wechseln
-0 22 * * * ~/pfad/zu/select_audio_output.py "AirPods" && ~/pfad/zu/select_audio_output.py -v 30
+# At 10 PM, switch to headphones with lower volume
+0 22 * * * ~/path/to/select_audio_output.py "AirPods" && ~/path/to/select_audio_output.py -v 30
 ```
 
-#### Verwendung mit Fokus-Modi in macOS
+#### Usage with Focus modes in macOS
 
-Erstellen Sie Automationen für verschiedene Fokus-Modi:
+Create automations for different Focus modes:
 
-1. Öffnen Sie Systemeinstellungen > Fokus
-2. Wählen Sie einen Fokus-Modus (z.B. "Arbeit")
-3. Klicken Sie auf "Automation hinzufügen"
-4. Wählen Sie "Fokus beginnt" als Auslöser
-5. Wählen Sie "Öffne App" und wählen Sie "Automator"
-6. Erstellen Sie einen Automator-Workflow, der Ihr Audio-Ausgabegerät wechselt
+1. Open System Settings > Focus
+2. Select a Focus mode (e.g., "Work")
+3. Click "Add Automation"
+4. Select "Focus starts" as the trigger
+5. Select "Open App" and choose "Automator"
+6. Create an Automator workflow that switches your audio output device
 
-### Fehlerbehebung
+### Troubleshooting
 
-#### SwitchAudioSource nicht gefunden
+#### SwitchAudioSource not found
 
 ```
 Error: SwitchAudioSource not found. Install via `brew install switchaudio-osx`.
 ```
 
-Lösung:
+Solution:
 ```bash
-# Installieren Sie SwitchAudioSource über Homebrew
+# Install SwitchAudioSource via Homebrew
 brew install switchaudio-osx
 
-# Wenn Homebrew nicht installiert ist, installieren Sie es zuerst
+# If Homebrew is not installed, install it first
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-#### Berechtigungsprobleme bei der Lautstärkeregelung
+#### Permission issues with volume control
 
 ```
-Die Lautstärkeregelung ist auf diesem System nicht verfügbar.
-Möglicherweise werden zusätzliche Berechtigungen benötigt.
+Volume control is not available on this system.
+Additional permissions may be required.
 ```
 
-Lösungen:
+Solutions:
 
-1. Stellen Sie sicher, dass Ihr Terminal Zugriff auf Bedienungshilfen hat:
-   - Systemeinstellungen > Sicherheit & Datenschutz > Datenschutz > Bedienungshilfen
-   - Fügen Sie Ihr Terminal (Terminal.app oder iTerm) zur Liste hinzu
+1. Make sure your terminal has access to accessibility features:
+   - System Settings > Security & Privacy > Privacy > Accessibility
+   - Add your terminal (Terminal.app or iTerm) to the list
 
-2. Erteilen Sie die Berechtigung manuell:
+2. Grant permission manually:
    ```bash
    osascript -e 'tell application "System Events" to set volume output volume 50'
    ```
-   (Bestätigen Sie die Berechtigungsanfrage)
+   (Confirm the permission request)
 
-#### Gerät wird nicht gefunden
+#### Device not found
 
 ```
-Kein passendes Gerät für 'Gerätename' gefunden.
+No matching device found for 'Device name'.
 ```
 
-Lösungen:
+Solutions:
 
-1. Listen Sie alle verfügbaren Geräte auf, um den exakten Namen zu sehen:
+1. List all available devices to see the exact name:
    ```bash
    ./select_audio_output.py
    ```
 
-2. Verwenden Sie den interaktiven Modus, um das Gerät auszuwählen:
+2. Use interactive mode to select the device:
    ```bash
    ./select_audio_output.py -i
    ```
 
-3. Versuchen Sie, einen Teil des Namens zu verwenden (Fuzzy-Matching):
+3. Try using a part of the name (fuzzy matching):
    ```bash
-   ./select_audio_output.py "Teil des Namens"
+   ./select_audio_output.py "Part of the name"
    ```
 
-#### Python-Abhängigkeiten fehlen
+#### Python dependencies missing
 
 ```
 ModuleNotFoundError: No module named 'questionary'
 ```
 
-Lösung:
+Solution:
 ```bash
 pip3 install -r requirements.txt
 ```
 
-## Tipps
+## Tips
 
-- Das Tool verfügt über ein intelligentes Matching-System für Gerätenamen:
-  - Groß-/Kleinschreibung wird ignoriert (z.B. "airpods" findet "AirPods")
-  - Teilnamen werden erkannt (z.B. "speaker" findet "MacBook Pro-Lautsprecher")
-  - Tippfehler werden automatisch korrigiert (z.B. "airpod" findet "AirPods")
-  - Bei mehreren ähnlichen Treffern wird das kürzeste/spezifischste Gerät ausgewählt
-- Im interaktiven Modus wird das aktuell aktive Gerät mit "(aktiv)" gekennzeichnet.
-- Der interaktive Modus bietet auch Optionen zur Lautstärkeregelung und Stummschaltung.
-- Sie können das Skript in Ihr System-PATH aufnehmen oder einen Alias in Ihrer Shell-Konfiguration erstellen, um es von überall aufrufen zu können.
+- The tool has an intelligent matching system for device names:
+  - Case is ignored (e.g., "airpods" finds "AirPods")
+  - Partial names are recognized (e.g., "speaker" finds "MacBook Pro Speakers")
+  - Typos are automatically corrected (e.g., "airpod" finds "AirPods")
+  - With multiple similar matches, the shortest/most specific device is selected
+- In interactive mode, the currently active device is marked with "(active)".
+- The interactive mode also offers options for volume control and muting.
+- You can add the script to your system PATH or create an alias in your shell configuration to call it from anywhere.
 
-### Tastenkürzel im interaktiven Modus
+### Keyboard shortcuts in interactive mode
 
-| Taste | Funktion |
+| Key | Function |
 |-------|----------|
-| ↑ / ↓ | Navigation durch die Liste |
-| Enter | Auswahl bestätigen |
-| Esc | Abbrechen |
-| Strg+C | Abbrechen |
+| ↑ / ↓ | Navigate through the list |
+| Enter | Confirm selection |
+| Esc | Cancel |
+| Ctrl+C | Cancel |
 
-### Praktische Beispiele für den Alltag
+### Practical examples for everyday use
 
-#### Schneller Wechsel zwischen Geräten während eines Meetings
+#### Quick switching between devices during a meeting
 
 ```bash
-# Vor dem Meeting: Zu Headset wechseln
+# Before the meeting: Switch to headset
 ./select_audio_output.py "Headset"
 
-# Während des Meetings: Stummschalten für eine kurze Unterbrechung
+# During the meeting: Mute for a short interruption
 ./select_audio_output.py -m
 
-# Nach dem Meeting: Zurück zu Lautsprechern mit angenehmer Lautstärke
-./select_audio_output.py "Lautsprecher" && ./select_audio_output.py -v 60
+# After the meeting: Back to speakers with comfortable volume
+./select_audio_output.py "Speakers" && ./select_audio_output.py -v 60
 ```
 
-#### Automatisierung für verschiedene Anwendungen
+#### Automation for different applications
 
 ```bash
-# Skript für Musikwiedergabe mit optimaler Lautstärke
+# Script for music playback with optimal volume
 music_mode() {
-    ~/pfad/zu/select_audio_output.py "Externe Lautsprecher" && ~/pfad/zu/select_audio_output.py -v 70
-    echo "Musikmodus aktiviert: Externe Lautsprecher mit optimaler Lautstärke"
+    ~/path/to/select_audio_output.py "External Speakers" && ~/path/to/select_audio_output.py -v 70
+    echo "Music mode activated: External speakers with optimal volume"
 }
 
-# Skript für Videoanrufe mit optimaler Einstellung
+# Script for video calls with optimal settings
 call_mode() {
-    ~/pfad/zu/select_audio_output.py "AirPods Pro" && ~/pfad/zu/select_audio_output.py -v 50
-    echo "Anrufmodus aktiviert: AirPods Pro mit mittlerer Lautstärke"
+    ~/path/to/select_audio_output.py "AirPods Pro" && ~/path/to/select_audio_output.py -v 50
+    echo "Call mode activated: AirPods Pro with medium volume"
 }
 
-# Skript für Filmabend mit HDMI-Ausgang
+# Script for movie night with HDMI output
 movie_mode() {
-    ~/pfad/zu/select_audio_output.py "HDMI" && ~/pfad/zu/select_audio_output.py -v 80
-    echo "Filmmodus aktiviert: HDMI-Ausgang mit hoher Lautstärke"
+    ~/path/to/select_audio_output.py "HDMI" && ~/path/to/select_audio_output.py -v 80
+    echo "Movie mode activated: HDMI output with high volume"
 }
 ```
 
-#### Integration in den Arbeitsablauf
+#### Integration into workflow
 
 ```bash
-# Beim Start des Computers: Standardgerät mit angenehmer Lautstärke
-~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher" && ~/pfad/zu/select_audio_output.py -v 50
+# At computer startup: Default device with comfortable volume
+~/path/to/select_audio_output.py "MacBook Pro Speakers" && ~/path/to/select_audio_output.py -v 50
 
-# Vor einem Meeting: Meeting-Skript ausführen
+# Before a meeting: Run meeting script
 pre_meeting() {
-    # Zu Headset wechseln
-    ~/pfad/zu/select_audio_output.py "Headset"
+    # Switch to headset
+    ~/path/to/select_audio_output.py "Headset"
     
-    # Benachrichtigung anzeigen
-    osascript -e 'display notification "Audio auf Headset umgeschaltet" with title "Meeting-Vorbereitung"'
+    # Display notification
+    osascript -e 'display notification "Audio switched to headset" with title "Meeting preparation"'
     
-    # Optional: Andere Meeting-Vorbereitungen
+    # Optional: Other meeting preparations
     open "https://zoom.us"
 }
 
-# Nach Feierabend: Unterhaltungsmodus
+# After work: Entertainment mode
 after_work() {
-    # Zu hochwertigen Lautsprechern wechseln
-    ~/pfad/zu/select_audio_output.py "Externe Lautsprecher" && ~/pfad/zu/select_audio_output.py -v 65
+    # Switch to high-quality speakers
+    ~/path/to/select_audio_output.py "External Speakers" && ~/path/to/select_audio_output.py -v 65
     
-    # Optional: Musik starten
+    # Optional: Start music
     open -a "Spotify"
 }
 ```
 
-#### Verwendung mit mehreren Monitoren und Audio-Ausgängen
+#### Usage with multiple monitors and audio outputs
 
 ```bash
-# Skript zum Umschalten auf externen Monitor mit passendem Audio
+# Script to switch to external monitor with matching audio
 external_display_mode() {
-    # Prüfen, ob externer Monitor verbunden ist
+    # Check if external monitor is connected
     if system_profiler SPDisplaysDataType | grep -q "DELL"; then
-        # Zu HDMI-Audio wechseln
-        ~/pfad/zu/select_audio_output.py "HDMI"
-        echo "Auf externen Monitor und HDMI-Audio umgeschaltet"
+        # Switch to HDMI audio
+        ~/path/to/select_audio_output.py "HDMI"
+        echo "Switched to external monitor and HDMI audio"
     else
-        echo "Kein externer Monitor gefunden"
+        echo "No external monitor found"
     fi
 }
 
-# Skript zum Zurückschalten auf internen Monitor mit internem Audio
+# Script to switch back to internal monitor with internal audio
 internal_display_mode() {
-    # Zu internen Lautsprechern wechseln
-    ~/pfad/zu/select_audio_output.py "MacBook Pro-Lautsprecher"
-    echo "Auf internen Monitor und interne Lautsprecher umgeschaltet"
+    # Switch to internal speakers
+    ~/path/to/select_audio_output.py "MacBook Pro Speakers"
+    echo "Switched to internal monitor and internal speakers"
 }
